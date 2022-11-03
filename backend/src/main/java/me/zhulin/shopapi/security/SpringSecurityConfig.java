@@ -16,6 +16,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.sql.DataSource;
 
@@ -70,6 +72,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/order/finish/**").access("hasAnyRole('EMPLOYEE', 'MANAGER')")
                 .antMatchers("/order/**").authenticated()
                 .antMatchers("/profiles/**").authenticated()
+                .antMatchers("/v3/api-docs").permitAll()
+                .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/seller/product/new").access("hasAnyRole('MANAGER')")
                 .antMatchers("/seller/**/delete").access("hasAnyRole( 'MANAGER')")
                 .antMatchers("/seller/**").access("hasAnyRole('EMPLOYEE', 'MANAGER')")
