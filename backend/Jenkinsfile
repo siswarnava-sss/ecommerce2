@@ -11,13 +11,9 @@ pipeline{
         }
         stage("Go to backend folder"){
             steps{
-                sh 'mvn -f ./backend/pom.xml'
+                sh 'mvn -f ./backend/pom.xml claen package -DskipTests=true'
             }
         }
-        stage("Make jar file"){
-            steps{
-                sh 'mvn claen package -DskipTests=true'
-            }
-        }
+        
     }
 }
