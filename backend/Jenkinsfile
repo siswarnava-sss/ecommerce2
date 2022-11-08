@@ -6,5 +6,15 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/siswarnava-sss/ecommerce2'
             }
         }
+        stage{
+            steps{
+                sh 'mvn test'
+            }
+        }
+        stage{
+            steps{
+                sh 'mvn verify -DskipUnitTest'
+            }
+        }
     }
 }
