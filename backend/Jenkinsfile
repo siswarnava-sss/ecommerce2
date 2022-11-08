@@ -9,14 +9,14 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/siswarnava-sss/ecommerce2'
             }
         }
-        stage("Unit Test"){
+        stage("Go to backend folder"){
             steps{
-                sh 'mvn test'
+                sh 'mvn -f ./backend/*'
             }
         }
-        stage("Integrations Test"){
+        stage("Make jar file"){
             steps{
-                sh 'mvn verify -DskipUnitTest'
+                sh 'mvn claen package -DskipTests=true'
             }
         }
     }
