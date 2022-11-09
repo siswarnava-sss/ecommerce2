@@ -19,7 +19,7 @@ pipeline{
             steps{
                 script{
                     waitSonarQubeEnv(credentialsId: 'sonar-api'){
-                        sh 'mvn clean verify sonar:sonar \
+                        sh 'mvn -f ./backend/pom.xml clean verify sonar:sonar \
                                 -Dsonar.projectKey=springapp \
                                 -Dsonar.host.url=http://20.207.201.150:9000 \
                                 -Dsonar.login=sqp_940544f83c0b4c3d8e8588b83b4ccf17f0455e4d'
