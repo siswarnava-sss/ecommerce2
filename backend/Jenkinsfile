@@ -22,7 +22,7 @@ pipeline{
                         sh 'mvn clean verify sonar:sonar \
                                 -Dsonar.projectKey=springapp \
                                 -Dsonar.host.url=http://20.207.201.150:9000 \
-                                -Dsonar.login=sqp_940544f83c0b4c3d8e8588b83b4ccf17f0455e4d
+                                -Dsonar.login=sqp_940544f83c0b4c3d8e8588b83b4ccf17f0455e4d'
                 }
             }
         }
