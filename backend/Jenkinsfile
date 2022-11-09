@@ -1,3 +1,5 @@
+ 926 Bytes
+
 pipeline{
     agent any
     tools {
@@ -18,7 +20,7 @@ pipeline{
         {
             steps{
                 script{
-                    withSonarQubeEnv(credentialsId: 'sonar-api'){
+                    waitSonarQubeEnv(credentialsId: 'sonar-api'){
                         sh 'mvn -f ./backend/pom.xml clean verify sonar:sonar \
                                 -Dsonar.projectKey=springapp \
                                 -Dsonar.host.url=http://20.207.201.150:9000 \
@@ -26,6 +28,16 @@ pipeline{
                 }
             }
         }
+          stage('Quality Gate Status'){
+                
+                steps{
+                    
+                    script{
+                        
+                        waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
+                    }
+                }
+            }
         
     }
 }
