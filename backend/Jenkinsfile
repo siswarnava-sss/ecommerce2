@@ -20,9 +20,9 @@ pipeline{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-api'){
                         sh 'mvn -f ./backend/pom.xml clean verify sonar:sonar \
-                                -Dsonar.projectKey=ne-spring \
+                                -Dsonar.projectKey=springapp \
                                 -Dsonar.host.url=http://20.207.201.150:9000 \
-                                -Dsonar.login=sqp_dbf697b68d79cee8a6fc8036c3fd99a0ad97e6a6'
+                                -Dsonar.login=sqp_940544f83c0b4c3d8e8588b83b4ccf17f0455e4d'
                 }
             }
         }
