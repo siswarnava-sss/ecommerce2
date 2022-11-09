@@ -33,15 +33,14 @@ pipeline{
                     [
                         [artifactId: 'shop-api', classifier: '', file: '/backend/target/ecommerce-spring-boot.jar', type: 'jar'
                         ]
-                        ]
-                        , 
-                        credentialsId: ''
-                        , groupId: 'me.zhulin',
-                         nexusUrl: 'http://20.207.201.150:8081', 
-                         nexusVersion: 'nexus3', 
-                         protocol: 'http', 
-                         repository: 'http://20.207.201.150:8081/repository/springapp/', 
-                         version: '0.0.1-SNAPSHOT'
+                        ], 
+                        credentialsId: '', 
+                        groupId: 'me.zhulin',
+                        nexusUrl: 'http://20.207.201.150:8081', 
+                        nexusVersion: 'nexus3', 
+                        protocol: 'http', 
+                        repository: 'http://20.207.201.150:8081/repository/springapp/', 
+                        version: '0.0.1-SNAPSHOT'
                 }
             }
         }
