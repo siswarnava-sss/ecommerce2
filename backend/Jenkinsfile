@@ -31,7 +31,7 @@ pipeline{
             steps{
                 script{
                     nexusArtifactUploader artifacts: [
-                        [artifactId: 'shop-api', classifier: '', file: './backend/target/ecommerce-spring-boot.jar', type: 'jar']], credentialsId: '', groupId: 'me.zhulin', nexusUrl: 'localhost:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'http://localhost:8081/repository/springapp/', version: '0.0.1-SNAPSHOT'
+                        [artifactId: 'shop-api', classifier: '', file: './backend/target/ecommerce-spring-boot.jar', type: 'jar']], credentialsId: '', groupId: 'me.zhulin', nexusUrl: 'localhost:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'springapp', version: '0.0.1-SNAPSHOT'
                     }
             }
         }
