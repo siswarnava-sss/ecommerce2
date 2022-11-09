@@ -1,5 +1,3 @@
- 926 Bytes
-
 pipeline{
     agent any
     tools {
