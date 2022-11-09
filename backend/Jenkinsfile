@@ -1,5 +1,3 @@
- 926 Bytes
-
 pipeline{
     agent any
     tools {
@@ -28,7 +26,7 @@ pipeline{
                 }
             }
         }
-          stage('Quality Gate Status'){
+        stage('Quality Gate Status'){
                 
                 steps{
                     
