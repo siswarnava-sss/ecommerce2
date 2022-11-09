@@ -20,9 +20,9 @@ pipeline{
                 script{
                     withSonarQubeEnv(credentialsId: 'sonar-api'){
                         sh 'mvn -f ./backend/pom.xml clean verify sonar:sonar \
-                                -Dsonar.projectKey=spring-app \
-                                -Dsonar.host.url=http://localhost:9000 \
-                                -Dsonar.login=sqp_4f8a4d60770ffd951eb8f72fe2f8cf0c50413980'
+                                -Dsonar.projectKey=springapp \
+                                -Dsonar.host.url=http://20.207.201.150:9000 \
+                                -Dsonar.login=sqp_940544f83c0b4c3d8e8588b83b4ccf17f0455e4d'
                 }
             }
         }
@@ -30,11 +30,22 @@ pipeline{
         stage("nexus"){
             steps{
                 script{
-                    nexusArtifactUploader artifacts: [[artifactId: 'shop-api', classifier: '', file: './backend/target/ecommerce=spring-boot.jar', type: 'jar']], credentialsId: '', groupId: 'me.zhulin', nexusUrl: 'http://localhost:8081/', nexusVersion: 'nexus3', protocol: 'http', repository: 'springapp', version: '0.0.1-SNAPSHOT'
-                    }
+                    nexusArtifactUploader artifacts: 
+                    [
+                        [artifactId: 'shop-api', classifier: '', file: '/backend/target/ecommerce-spring-boot.jar', type: 'jar'
+                        ]
+                        ], 
+                        credentialsId: '', 
+                        groupId: 'me.zhulin',
+                        nexusUrl: 'http://20.207.201.150:8081', 
+                        nexusVersion: 'nexus3', 
+                        protocol: 'http', 
+                        repository: 'http://20.207.201.150:8081/repository/springapp/', 
+                        version: '0.0.1-SNAPSHOT'
+                }
             }
         }
         
         
     }
-    }
+}
