@@ -57,7 +57,7 @@ public class ProductInfo implements Serializable {
     private Date createTime;
     @UpdateTimestamp
     private Date updateTime;
-
+/*
     public ProductInfo() {
-    }
+    }*/
 }
