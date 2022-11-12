@@ -27,6 +27,12 @@ pipeline{
             }
         }
         }
+        stage("Quatily Gate Analysis){
+              steps{
+                  waitForQualityGate abortPipeline: false, credentialsId: 'sonar-api'
+              }
+              
+        }
         stage("nexus"){
             steps{
                 script{
