@@ -38,7 +38,30 @@ pipeline{
         stage("nexus"){
             steps{
                 script{
+                    
                     nexusArtifactUploader artifacts: [[artifactId: 'shop-api', classifier: '', file: './backend/target/ecommerce-spring-boot.jar', type: 'jar']], credentialsId: 'nexus-auth', groupId: 'me.zhulin', nexusUrl: '20.207.201.150:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'springapp', version: '1.0.0-SNAPSHOT'
+                }
+            }
+        }
+        
+        stage("Docker Image Build")
+        {
+            steps{
+                scripts{
+                    sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID'
+                    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID swarSinha/$JOB_NAME:v1.$BUILD_ID'
+                    
+                    
+                }
+            }
+        }
+        stage("Docker Push Image"){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'docker_cred', variable: 'docker_cred')]) {
+                        sh 'docker login -u swarSinha -p $(docker_cred)'
+                        sh 'docker push swarSinha/$JOB_NAME:v1.$BUILD_ID' 
+                    }
                 }
             }
         }
