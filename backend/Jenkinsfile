@@ -48,12 +48,22 @@ pipeline{
         
         stage("Docker Image Build")
         {
-            dockerImage   = docker.build("swarSinha/$JOB_NAME:v1.$BUILD_ID")
+            steps{
+                script{
+                     dockerImage  = docker.build("swarSinha/$JOB_NAME:v1.$BUILD_ID")
+                }
+            }
+           
         }
         stage("Docker Push Image"){
-            withDockerRegistry(credentialsId: 'dockerhub_password', toolName: 'docker') {
+        steps{
+                script{
+                    withDockerRegistry(credentialsId: 'dockerhub_password', toolName: 'docker') {
                  dockerImage.push
+                    }
+                }
             }
+            
         }
         
         
