@@ -51,7 +51,18 @@ pipeline{
             steps{
                 script{
                     sh 'docker image build -t $JOB_NAME:v1.$BUILD_ID ./backend'
-                    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID swarSinha/$JOB_NAME:v1.$BUILD_ID'
+                    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID swarsinha/$JOB_NAME:v1.$BUILD_ID'
+                }
+            }
+        }
+        stage("Push Image")
+        {
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'docker_cred', variable: 'docker')]) {
+                        sh 'docker login -u swarsinha -p ${docker}'
+                        sh 'docker push swarsinha/$JOB_NAME:v1.$BUILD_ID'
+                    }
                 }
             }
         }
