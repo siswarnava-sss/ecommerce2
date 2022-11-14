@@ -50,8 +50,8 @@ pipeline{
         {
             steps{
                 script{
-                    sh 'docker image build $JOB_ID:v1.$BUILD_ID'
-                    sh 'docker image tag $JOB_ID:v1.$BUILD_ID swarSinha/$JOB_ID:v1.$BUILD_ID'
+                    sh 'docker image build $JOB_NAME:v1.$BUILD_ID'
+                    sh 'docker image tag $JOB_NAME:v1.$BUILD_ID swarSinha/$JOB_NAME:v1.$BUILD_ID'
                 }
             }
         }
